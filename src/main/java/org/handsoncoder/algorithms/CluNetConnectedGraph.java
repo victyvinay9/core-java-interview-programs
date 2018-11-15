@@ -70,5 +70,4 @@ public class CluNetConnectedGraph {
 
 		graph.convertGraphToMaxSpanningTree();
 	}
-
 }
