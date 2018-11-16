@@ -3,15 +3,22 @@ package org.handsoncoder.algorithms;
 import java.util.Arrays;
 
 public class CluNetConnectedGraph {
+	int V, E;
+	CommunicationLink graphLinks[];
+
+	public void printGraphLinks() {
+		System.out.println(String.format("%-12s|%-12s|%12s", "source", "destination", "bandwidth"));
+		for (int k = 0; k < E; k++) {
+			System.out.println(String.format("%-12s|%-12s|%12s", graphLinks[k].sourceNode,
+					graphLinks[k].destinationNode, graphLinks[k].bandwidth));
+		}
+	}
 
 	public CluNetConnectedGraph(int v, int e) {
 		V = v;
 		E = e;
 		graphLinks = new CommunicationLink[E];
 	}
-
-	int V, E;
-	CommunicationLink graphLinks[];
 
 	private int findParent(int v, int[] parent) {
 		if (parent[v] == v) {
@@ -45,13 +52,12 @@ public class CluNetConnectedGraph {
 			}
 			i++;
 		}
-		System.out.println(String.format("%-12s|%-12s|%12s", "source","destination","bandwidth"));
+		System.out.println(String.format("%-12s|%-12s|%12s", "source", "destination", "bandwidth"));
 		for (int k = 0; k < V - 1; k++) {
 			System.out.println(String.format("%-12s|%-12s|%12s", mstLinks[k].sourceNode, mstLinks[k].destinationNode,
 					mstLinks[k].bandwidth));
 		}
 	}
-
 	public static void main(String[] args) {
 
 		int V = 6, E = 11;
@@ -68,6 +74,9 @@ public class CluNetConnectedGraph {
 		graph.graphLinks[9] = new CommunicationLink(1, 3, 1);
 		graph.graphLinks[10] = new CommunicationLink(2, 3, 6);
 
+		graph.printGraphLinks();
 		graph.convertGraphToMaxSpanningTree();
 	}
+
+
 }
